@@ -44,11 +44,3 @@ export default {
   }
 }
 </script>
-
-<style lang="css" scoped>
-.list {
-  border: 1px solid red;
-  margin: 10px;
-  padding: 10px;
-}
-</style>

@@ -45,9 +45,3 @@ export default {
   }
 }
 </script>
-
-<style lang="css" scoped>
-.form {
-  border: 1px solid;
-}
-</style>

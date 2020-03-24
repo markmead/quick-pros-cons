@@ -17,9 +17,3 @@ export default {
   props: ['title']
 }
 </script>
-
-<style lang="css" scoped >
-.list-wrapper {
-  border: 1px solid;
-}
-</style>

@@ -7,7 +7,3 @@ export default {
   props: ['title']
 }
 </script>
-
-<style lang="css" scoped >
-
-</style>
