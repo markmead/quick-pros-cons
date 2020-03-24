@@ -32,7 +32,7 @@
 
     <div class="grid grid-cols-2 gap-4">
       <div class="bg-white overflow-hidden shadow rounded-lg">
-        <div class="border-b border-gray-200 px-2 py-4 sm:px-4">
+        <div class="border-b border-gray-200 p-2 sm:px-4">
           <h2>Pros</h2>
         </div>
         <div class="px-4 py-5 sm:p-6">
@@ -46,7 +46,7 @@
       </div>
 
       <div class="bg-white overflow-hidden shadow rounded-lg">
-        <div class="border-b border-gray-200 px-2 py-4 sm:px-4">
+        <div class="border-b border-gray-200 p-2 sm:px-4">
           <h2>Cons</h2>
         </div>
         <div class="px-4 py-5 sm:p-6">
