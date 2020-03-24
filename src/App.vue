@@ -11,13 +11,13 @@
               <input
                 v-model="listTitle"
                 id="listTitle"
-                class="form-input flex w-full sm:leading-8 py-4 w-full"
+                class="form-input flex w-full sm:leading-8 py-4 w-full pr-16"
                 placeholder="Should I use..." />
-              <FormButton text="Add List" />
+              <FormButton size="large" />
             </div>
           </div>
         </form>
-        <div class="grid grid-cols-3 gap-8 mt-4 md:mt-8">
+        <div class="grid grid-cols-2 gap-8 mt-4 md:mt-8">
           <ListWrapper v-for="listTitle in listTitles" :key="listTitle" :title="listTitle" />
         </div>
       </div>
