@@ -1,28 +1,41 @@
-<template>
+<template lang="html">
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <Title />
+    <form class="form" v-on:submit.prevent="addListTitle">
+      <input type="text" name="List Title" v-model="listTitle">
+      <button type="submit" name="button">Add List</button>
+    </form>
+    <ListWrapper v-for="listTitle in listTitles" :key="listTitle" :title="listTitle" />
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import Title from '@/components/Title'
+import ListWrapper from '@/components/ListWrapper'
 
 export default {
-  name: 'App',
+  data() {
+    return {
+      listTitle: '',
+      listTitles: []
+    }
+  },
+  methods: {
+    addListTitle() {
+      // TODO: stop the user submitting nothing
+      this.listTitles.push(this.listTitle)
+      this.listTitle = ''
+    }
+  },
   components: {
-    HelloWorld
+    Title,
+    ListWrapper
   }
 }
 </script>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+<style lang="css" scoped>
+.form {
+  border: 1px solid;
 }
 </style>
