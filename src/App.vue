@@ -1,7 +1,7 @@
 <template lang="html">
   <div id="app">
     <Title />
-    <div v-show="errorType === 'emptyString'" class="error">Please enter a title</div>
+    <Error :error="errorType" />
     <form class="form" v-on:submit.prevent="addListTitle">
       <input type="text" name="List Title" v-model="listTitle">
       <FormButton text="Add List" />
@@ -14,6 +14,7 @@
 import Title from '@/components/Title'
 import ListWrapper from '@/components/ListWrapper'
 import FormButton from '@/components/FormButton'
+import Error from '@/components/Error'
 
 export default {
   data() {
@@ -39,7 +40,8 @@ export default {
   components: {
     Title,
     ListWrapper,
-    FormButton
+    FormButton,
+    Error
   }
 }
 </script>
@@ -47,10 +49,5 @@ export default {
 <style lang="css" scoped>
 .form {
   border: 1px solid;
-}
-
-.error {
-  background: red;
-  padding: 5px;
 }
 </style>
