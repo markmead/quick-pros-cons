@@ -1,6 +1,7 @@
 <template lang="html">
   <div id="app">
     <Title />
+    <div v-show="errorType === 'emptyString'" class="error">Please enter a title</div>
     <form class="form" v-on:submit.prevent="addListTitle">
       <input type="text" name="List Title" v-model="listTitle">
       <FormButton text="Add List" />
@@ -18,14 +19,21 @@ export default {
   data() {
     return {
       listTitle: '',
-      listTitles: []
+      listTitles: [],
+      errorType: null
     }
   },
   methods: {
     addListTitle() {
-      // TODO: stop the user submitting nothing
-      this.listTitles.push(this.listTitle)
-      this.listTitle = ''
+      try {
+        if(!this.listTitle) throw 'emptyString'
+        this.listTitles.push(this.listTitle)
+        this.listTitle = ''
+        this.errorType = ''
+      }
+      catch(e) {
+        this.errorType = e
+      }
     }
   },
   components: {
@@ -39,5 +47,10 @@ export default {
 <style lang="css" scoped>
 .form {
   border: 1px solid;
+}
+
+.error {
+  background: red;
+  padding: 5px;
 }
 </style>
