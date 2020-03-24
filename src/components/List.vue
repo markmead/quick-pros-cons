@@ -2,12 +2,12 @@
   <div>
     <form class="form" v-on:submit.prevent="addProsItem">
       <input type="text" name="prosItem" v-model="prosItem">
-      <button type="submit" name="button">Add Pro</button>
+      <FormButton text="Add Pro" />
     </form>
 
     <form class="form" v-on:submit.prevent="addConsItem">
-      <input type="text" name="consItem" v-model="constItem">
-      <button type="submit" name="button">Add Con</button>
+      <input type="text" name="consItem" v-model="consItem">
+      <FormButton text="Add Con" />
     </form>
     <ul class="list">
       <li v-for="prosItem in prosList" :key="prosItem">{{ prosItem }}</li>
@@ -19,6 +19,7 @@
 </template>
 
 <script>
+import FormButton from '@/components/FormButton'
 export default {
   data() {
     return {
@@ -27,6 +28,9 @@ export default {
       prosList: [],
       consList: []
     }
+  },
+  components: {
+    FormButton
   },
   methods: {
     addProsItem() {

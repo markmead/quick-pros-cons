@@ -3,7 +3,7 @@
     <Title />
     <form class="form" v-on:submit.prevent="addListTitle">
       <input type="text" name="List Title" v-model="listTitle">
-      <button type="submit" name="button">Add List</button>
+      <FormButton text="Add List" />
     </form>
     <ListWrapper v-for="listTitle in listTitles" :key="listTitle" :title="listTitle" />
   </div>
@@ -12,6 +12,7 @@
 <script>
 import Title from '@/components/Title'
 import ListWrapper from '@/components/ListWrapper'
+import FormButton from '@/components/FormButton'
 
 export default {
   data() {
@@ -29,7 +30,8 @@ export default {
   },
   components: {
     Title,
-    ListWrapper
+    ListWrapper,
+    FormButton
   }
 }
 </script>
