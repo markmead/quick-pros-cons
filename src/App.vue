@@ -32,20 +32,21 @@
       </Title>
       <Config :isOpen="showConfig" v-model="listSettings" />
       <div class="py-4 md:py-8">
-        <Error :error="errorType" />
-        <form v-on:submit.prevent="addListTitle">
+        <form @submit.prevent="addListTitle">
           <div>
             <label for="listTitle" class="block text-sm font-medium leading-5 text-gray-700">List Title</label>
             <div class="mt-1 relative rounded-md shadow-sm">
               <input
-                v-model="listTitle"
+                v-model.trim="$v.listTitle.$model"
                 id="listTitle"
                 class="form-input flex w-full sm:leading-8 py-4 w-full pr-16"
                 placeholder="Should I use..."
+                :class="{ 'border-red-500': submitStatus === 'ERROR' }"
               />
               <FormButton size="large" />
             </div>
           </div>
+          <div class="mt-2 text-sm text-red-500" v-if="submitStatus === 'ERROR'">Field is required</div>
         </form>
 
         <div class="grid gap-8 mt-4 md:mt-8" :class="listsPerRowClass" ref="allLists">
@@ -58,21 +59,21 @@
 
 <script>
 import html2pdf from 'html2pdf.js'
+import { required } from 'vuelidate/lib/validators'
 
 import Layout from '@/components/Layout'
 import Config from '@/components/Config'
 import Title from '@/components/Title'
 import ListWrapper from '@/components/ListWrapper'
 import FormButton from '@/components/FormButton'
-import Error from '@/components/Error'
 
 export default {
   data() {
     return {
       listTitle: '',
       listTitles: ['Mark', 'Jordi'],
-      errorType: null,
       showConfig: false,
+      submitStatus: '',
       listSettings: {
         listsPerRow: 2,
         nameOfPDF: 'pros-cons'
@@ -86,13 +87,11 @@ export default {
   },
   methods: {
     addListTitle() {
-      try {
-        if (!this.listTitle) throw 'emptyString'
+      if (this.$v.$invalid) {
+        this.submitStatus = 'ERROR'
+      } else {
         this.listTitles.push(this.listTitle)
-        this.listTitle = ''
-        this.errorType = ''
-      } catch (e) {
-        this.errorType = e
+        this.submitStatus = 'OK'
       }
     },
     exportToPDF() {
@@ -110,8 +109,12 @@ export default {
     Title,
     ListWrapper,
     FormButton,
-    Error,
     Config
+  },
+  validations: {
+    listTitle: {
+      required
+    }
   }
 }
 </script>
