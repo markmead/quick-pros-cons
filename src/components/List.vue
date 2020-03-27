@@ -3,11 +3,11 @@
     <div class="grid grid-cols-2 gap-4 mb-4" data-html2canvas-ignore="true">
       <form v-on:submit.prevent="addProsItem">
         <div>
-          <label for="prosItem" class="sr-only">Add Pro</label>
+          <label :for="prosInputID" class="sr-only">Add Pro</label>
           <div class="relative rounded-md shadow-sm">
             <input
               v-model="prosItem"
-              id="prosItem"
+              :id="prosInputID"
               class="form-input block w-full sm:text-sm sm:leading-5 pr-10"
               placeholder="It's great..."
             />
@@ -18,11 +18,11 @@
 
       <form v-on:submit.prevent="addConsItem">
         <div>
-          <label for="consItem" class="sr-only">Add Con</label>
+          <label :for="consInputID" class="sr-only">Add Con</label>
           <div class="relative rounded-md shadow-sm">
             <input
               v-model="consItem"
-              id="consItem"
+              :id="consInputID"
               class="form-input block w-full sm:text-sm sm:leading-5 pr-10"
               placeholder="It's bad..."
             />
@@ -69,6 +69,15 @@ export default {
       consList: []
     }
   },
+  props: ['title', 'id'],
+  computed: {
+    prosInputID() {
+      return `${this.stringToID(this.title)}_pros_item_${this.id}`
+    },
+    consInputID() {
+      return `${this.stringToID(this.title)}_cons_item_${this.id}`
+    }
+  },
   components: {
     FormButton
   },
@@ -80,6 +89,9 @@ export default {
     addConsItem() {
       this.consList.push(this.consItem)
       this.consItem = ''
+    },
+    stringToID(value) {
+      return value.replace(/ /g, '_').toLowerCase()
     }
   }
 }

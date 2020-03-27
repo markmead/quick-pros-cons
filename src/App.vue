@@ -50,7 +50,7 @@
         </form>
 
         <div class="grid gap-8 mt-4 md:mt-8" :class="listsPerRowClass" ref="allLists">
-          <ListWrapper v-for="listTitle in listTitles" :key="listTitle" :title="listTitle" />
+          <ListWrapper v-for="(listTitle, index) in listTitles" :key="index" :title="listTitle" :id="index" />
         </div>
       </div>
     </div>

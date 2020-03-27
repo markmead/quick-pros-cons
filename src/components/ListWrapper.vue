@@ -4,7 +4,7 @@
       <ListTitle :title="title" />
     </div>
     <div class="px-4 py-6">
-      <List />
+      <List :title="title" :id="id" />
     </div>
   </div>
 </template>
@@ -18,6 +18,6 @@ export default {
     List,
     ListTitle
   },
-  props: ['title']
+  props: ['title', 'id']
 }
 </script>
