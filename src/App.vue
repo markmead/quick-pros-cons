@@ -30,7 +30,7 @@
           </svg>
         </button>
       </Title>
-      <Config :open="showConfig" v-model="listsPerRow" />
+      <Config :isOpen="showConfig" v-model="listSettings" />
       <div class="py-4 md:py-8">
         <Error :error="errorType" />
         <form v-on:submit.prevent="addListTitle">
@@ -73,12 +73,15 @@ export default {
       listTitles: ['Mark', 'Jordi'],
       errorType: null,
       showConfig: false,
-      listsPerRow: 2
+      listSettings: {
+        listsPerRow: 2,
+        nameOfPDF: 'pros-cons'
+      }
     }
   },
   computed: {
     listsPerRowClass() {
-      return `grid-cols-${this.listsPerRow}`
+      return `grid-cols-${this.listSettings.listsPerRow}`
     }
   },
   methods: {
@@ -95,7 +98,7 @@ export default {
     exportToPDF() {
       html2pdf(this.$refs.allLists, {
         margin: 0.5,
-        filename: 'pros-const-list.pdf',
+        filename: `${this.listSettings.nameOfPDF}.pdf`,
         image: { type: 'jpeg', quality: 1 },
         html2canvas: { dpi: 192, letterRendering: true },
         jsPDF: { unit: 'in', format: 'letter', orientation: 'landscape' }
