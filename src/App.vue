@@ -91,6 +91,7 @@ export default {
         this.submitStatus = 'ERROR'
       } else {
         this.listTitles.push(this.listTitle)
+        this.listTitle = ''
         this.submitStatus = 'OK'
       }
     },
