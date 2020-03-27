@@ -1,6 +1,6 @@
 <template lang="html">
   <Layout>
-    <div id="app">
+    <div id="app" class="relative">
       <Title>
         <span class="shadow-sm rounded-md">
           <button
@@ -11,7 +11,26 @@
             Export PDF
           </button>
         </span>
+        <button
+          @click="showConfig = !showConfig"
+          class="ml-4 text-gray-700 inline-flex items-center p-2 border border-transparent rounded-md bg-gray-50 hover:bg-gray-100 focus:outline-none focus:shadow-outline focus:border-gray-150 active:bg-gray-150 transition duration-150 ease-in-out"
+        >
+          <svg
+            fill="none"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            viewBox="0 0 24 24"
+            class="w-6 h-6"
+          >
+            <path
+              d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"
+            ></path>
+          </svg>
+        </button>
       </Title>
+      <Config :open="showConfig" v-model="listsPerRow" />
       <div class="py-4 md:py-8">
         <Error :error="errorType" />
         <form v-on:submit.prevent="addListTitle">
@@ -29,7 +48,7 @@
           </div>
         </form>
 
-        <div class="grid grid-cols-2 gap-8 mt-4 md:mt-8" ref="allLists">
+        <div class="grid gap-8 mt-4 md:mt-8" :class="listsPerRowClass" ref="allLists">
           <ListWrapper v-for="listTitle in listTitles" :key="listTitle" :title="listTitle" />
         </div>
       </div>
@@ -41,6 +60,7 @@
 import html2pdf from 'html2pdf.js'
 
 import Layout from '@/components/Layout'
+import Config from '@/components/Config'
 import Title from '@/components/Title'
 import ListWrapper from '@/components/ListWrapper'
 import FormButton from '@/components/FormButton'
@@ -51,7 +71,14 @@ export default {
     return {
       listTitle: '',
       listTitles: ['Mark', 'Jordi'],
-      errorType: null
+      errorType: null,
+      showConfig: false,
+      listsPerRow: 2
+    }
+  },
+  computed: {
+    listsPerRowClass() {
+      return `grid-cols-${this.listsPerRow}`
     }
   },
   methods: {
@@ -80,7 +107,8 @@ export default {
     Title,
     ListWrapper,
     FormButton,
-    Error
+    Error,
+    Config
   }
 }
 </script>
