@@ -58,51 +58,51 @@
 </template>
 
 <script>
-import html2pdf from 'html2pdf.js'
-import { required } from 'vuelidate/lib/validators'
+import html2pdf from "html2pdf.js";
+import { required } from "vuelidate/lib/validators";
 
-import Layout from '@/components/Layout'
-import Config from '@/components/Config'
-import Title from '@/components/Title'
-import ListWrapper from '@/components/ListWrapper'
-import FormButton from '@/components/FormButton'
+import Layout from "@/components/Layout";
+import Config from "@/components/Config";
+import Title from "@/components/Title";
+import ListWrapper from "@/components/ListWrapper";
+import FormButton from "@/components/FormButton";
 
 export default {
   data() {
     return {
-      listTitle: '',
-      listTitles: ['Mark', 'Jordi'],
+      listTitle: "",
+      listTitles: ["Mark", "Jordi"],
       showConfig: false,
-      submitStatus: '',
+      submitStatus: "",
       listSettings: {
         listsPerRow: 2,
-        nameOfPDF: 'pros-cons'
+        nameOfPDF: "pros-cons"
       }
-    }
+    };
   },
   computed: {
     listsPerRowClass() {
-      return `grid-cols-${this.listSettings.listsPerRow}`
+      return `grid-cols-${this.listSettings.listsPerRow}`;
     }
   },
   methods: {
     addListTitle() {
       if (this.$v.$invalid) {
-        this.submitStatus = 'ERROR'
+        this.submitStatus = "ERROR";
       } else {
-        this.listTitles.push(this.listTitle)
-        this.listTitle = ''
-        this.submitStatus = 'OK'
+        this.listTitles.push(this.listTitle);
+        this.listTitle = "";
+        this.submitStatus = "OK";
       }
     },
     exportToPDF() {
       html2pdf(this.$refs.allLists, {
         margin: 0.5,
         filename: `${this.listSettings.nameOfPDF}.pdf`,
-        image: { type: 'jpeg', quality: 1 },
+        image: { type: "jpeg", quality: 1 },
         html2canvas: { dpi: 192, letterRendering: true },
-        jsPDF: { unit: 'in', format: 'letter', orientation: 'landscape' }
-      })
+        jsPDF: { unit: "in", format: "letter", orientation: "landscape" }
+      });
     }
   },
   components: {
@@ -117,5 +117,5 @@ export default {
       required
     }
   }
-}
+};
 </script>
