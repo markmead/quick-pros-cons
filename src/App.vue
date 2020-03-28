@@ -16,6 +16,7 @@
           class="ml-4 inline-flex justify-center items-center bg-gray-100 hover:bg-gray-200 text-gray-700 focus:outline-none focus:shadow-outline p-2 rounded-md"
         >
           <svg
+            v-show="!showConfig"
             fill="none"
             stroke="currentColor"
             stroke-linecap="round"
@@ -27,6 +28,18 @@
             <path
               d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"
             ></path>
+          </svg>
+          <svg
+            v-show="showConfig"
+            fill="none"
+            stroke="currentColor"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            stroke-width="2"
+            viewBox="0 0 24 24"
+            class="w-6 h-6"
+          >
+            <path d="M6 18L18 6M6 6l12 12"></path>
           </svg>
         </button>
       </Title>
