@@ -13,7 +13,7 @@
         </span>
         <button
           @click="showConfig = !showConfig"
-          class="ml-4 text-gray-700 inline-flex items-center p-2 border border-transparent rounded-md bg-gray-50 hover:bg-gray-100 focus:outline-none focus:shadow-outline focus:border-gray-150 active:bg-gray-150 transition duration-150 ease-in-out"
+          class="ml-4 inline-flex justify-center items-center bg-gray-100 hover:bg-gray-200 text-gray-700 focus:outline-none focus:shadow-outline p-2 rounded-md"
         >
           <svg
             fill="none"
@@ -50,7 +50,11 @@
         </form>
 
         <div class="grid gap-8 mt-4 md:mt-8" :class="listsPerRowClass" ref="allLists">
-          <ListWrapper v-for="(listTitle, index) in listTitles" :key="index" :title="listTitle" :id="index" />
+          <ListWrapper v-for="(listTitle, index) in listTitles" :key="index" :title="listTitle" :id="index">
+            <button @click="removeList(index)" class="inline-flex justify-center items-center bg-gray-100 hover:bg-gray-200 focus:outline-none focus:shadow-outline p-2 rounded-md">
+              <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" class="w-6 h-6"><path d="M6 18L18 6M6 6l12 12"></path></svg>
+            </button>
+          </ListWrapper>
         </div>
       </div>
     </div>
@@ -103,6 +107,9 @@ export default {
         html2canvas: { dpi: 192, letterRendering: true },
         jsPDF: { unit: "in", format: "letter", orientation: "landscape" }
       });
+    },
+    removeList(id) {
+      this.listTitles.splice(id, 1);
     }
   },
   components: {

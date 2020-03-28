@@ -46,7 +46,7 @@
           <ul>
             <li v-for="(prosItem, index) in prosList" :key="index" class="text-green-600 flex justify-between">
               <span>{{ prosItem }}</span>
-              <button @click="removeProsItem(index)" class="ml-4 text-gray-700 inline-flex items-center p-2 border border-transparent rounded bg-gray-50 hover:bg-gray-100 focus:outline-none focus:shadow-outline focus:border-gray-150 active:bg-gray-150 transition duration-150 ease-in-out">
+              <button @click="removeProsItem(index)" class="ml-4 inline-flex justify-center items-center bg-gray-100 hover:bg-gray-200 text-gray-700 focus:outline-none focus:shadow-outline p-2 rounded-md">
                 <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" class="w-3 h-3"><path d="M6 18L18 6M6 6l12 12"></path></svg>
               </button>
             </li>
@@ -62,7 +62,7 @@
           <ul>
             <li v-for="(consItem, index) in consList" :key="index" class="text-red-600 flex justify-between">
               <span>{{ consItem }}</span>
-              <button @click="removeConsItem(index)" class="ml-4 text-gray-700 inline-flex items-center p-2 border border-transparent rounded bg-gray-50 hover:bg-gray-100 focus:outline-none focus:shadow-outline focus:border-gray-150 active:bg-gray-150 transition duration-150 ease-in-out">
+              <button @click="removeConsItem(index)" class="ml-4 inline-flex justify-center items-center bg-gray-100 hover:bg-gray-200 text-gray-700 focus:outline-none focus:shadow-outline p-2 rounded-md">
                 <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24" class="w-3 h-3"><path d="M6 18L18 6M6 6l12 12"></path></svg>
               </button>
             </li>

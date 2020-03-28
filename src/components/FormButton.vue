@@ -6,7 +6,7 @@
     <button
       type="submit"
       name="button"
-      class="inline-flex justify-center items-center bg-gray-100 hover:bg-gray-200 focus:outline-none focus:shadow-outline p-2 rounded-md"
+      class="inline-flex justify-center items-center bg-gray-100 hover:bg-gray-200 text-gray-700 focus:outline-none focus:shadow-outline p-2 rounded-md"
     >
       <svg
         fill="none"
@@ -25,6 +25,6 @@
 
 <script>
 export default {
-  props: ['size']
-}
+  props: ["size"]
+};
 </script>
