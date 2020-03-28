@@ -44,7 +44,7 @@ import { required, between, numeric } from 'vuelidate/lib/validators'
 export default {
   props: ['isOpen', 'value'],
   watch: {
-    updateValue: function(value) {
+    updateValue(value) {
       this.$emit('input', value)
     }
   },
