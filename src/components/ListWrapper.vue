@@ -17,14 +17,14 @@
 </template>
 
 <script>
-import List from "@/components/List";
-import ListTitle from "@/components/ListTitle";
+import List from '@/components/List'
+import ListTitle from '@/components/ListTitle'
 
 export default {
   components: {
     List,
     ListTitle
   },
-  props: ["title", "id"]
-};
+  props: ['title', 'id']
+}
 </script>

@@ -62,25 +62,48 @@
           <div class="mt-2 text-sm text-red-500" v-if="submitStatus === 'ERROR'">Field is required</div>
         </form>
 
-        <div class="grid gap-8 mt-4 md:mt-8" :class="listsPerRowClass" ref="allLists">
-          <ListWrapper v-for="(listTitle, index) in listTitles" :key="index" :title="listTitle" :id="index">
-            <button
-              @click="removeList(index)"
-              class="inline-flex justify-center items-center bg-gray-100 hover:bg-gray-200 focus:outline-none focus:shadow-outline p-2 rounded-md"
-            >
-              <svg
-                fill="none"
-                stroke="currentColor"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                viewBox="0 0 24 24"
-                class="w-6 h-6"
+        <div ref="allLists">
+          <draggable
+            v-model="listTitles"
+            handle="#handleDrag"
+            class="grid gap-8 mt-4 md:mt-8"
+            :class="listsPerRowClass"
+          >
+            <ListWrapper v-for="(listTitle, index) in listTitles" :key="index" :title="listTitle" :id="index">
+              <button
+                id="handleDrag"
+                class="inline-flex justify-center items-center bg-gray-100 hover:bg-gray-200 focus:outline-none focus:shadow-outline p-2 rounded-md"
               >
-                <path d="M6 18L18 6M6 6l12 12"></path>
-              </svg>
-            </button>
-          </ListWrapper>
+                <svg
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                  class="w-6 h-6"
+                >
+                  <path d="M4 8h16M4 16h16"></path>
+                </svg>
+              </button>
+              <button
+                @click="removeList(index)"
+                class="ml-4 inline-flex justify-center items-center bg-gray-100 hover:bg-gray-200 focus:outline-none focus:shadow-outline p-2 rounded-md"
+              >
+                <svg
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  viewBox="0 0 24 24"
+                  class="w-6 h-6"
+                >
+                  <path d="M6 18L18 6M6 6l12 12"></path>
+                </svg>
+              </button>
+            </ListWrapper>
+          </draggable>
         </div>
       </div>
     </div>
@@ -89,6 +112,7 @@
 
 <script>
 import html2pdf from 'html2pdf.js'
+import draggable from 'vuedraggable'
 import { required } from 'vuelidate/lib/validators'
 
 import Layout from '@/components/Layout'
@@ -139,6 +163,7 @@ export default {
     }
   },
   components: {
+    draggable,
     Layout,
     Title,
     ListWrapper,
@@ -152,3 +177,9 @@ export default {
   }
 }
 </script>
+
+<style lang="postcss" scoped>
+.sortable-chosen {
+  @apply border-2 border-dashed border-gray-300 shadow-lg;
+}
+</style>
