@@ -40,7 +40,10 @@
     <div class="grid grid-cols-2 gap-4">
       <div class="bg-white overflow-hidden shadow rounded-lg">
         <div class="border-b border-gray-200 p-2 sm:px-4">
-          <h2>Pros</h2>
+          <h2>
+            Pros
+            <sup class="text-gray-500">{{ prosList.length }}</sup>
+          </h2>
         </div>
         <div class="p-2 sm:px-4">
           <ul class="-mt-2">
@@ -69,7 +72,10 @@
 
       <div class="bg-white overflow-hidden shadow rounded-lg">
         <div class="border-b border-gray-200 p-2 sm:px-4">
-          <h2>Cons</h2>
+          <h2>
+            Cons
+            <sup class="text-gray-500">{{ consList.length }}</sup>
+          </h2>
         </div>
         <div class="p-2 sm:px-4">
           <ul class="-mt-2">
