@@ -31,7 +31,6 @@
             />
             <FormButton size="small" />
           </div>
-          {{ consItem }}
         </div>
         <div class="mt-2 text-sm text-red-500" v-if="submitStatus === 'ERROR_CONS'">Field is required</div>
       </form>
@@ -46,27 +45,32 @@
           </h2>
         </div>
         <div class="p-2 sm:px-4">
-          <ul class="-mt-2">
-            <li v-for="(prosItem, index) in prosList" :key="index" class="text-green-600 flex justify-between mt-2">
-              <span>{{ prosItem }}</span>
-              <button
-                @click="removeProsItem(index)"
-                class="ml-4 inline-flex justify-center items-center bg-gray-100 hover:bg-gray-200 text-gray-700 focus:outline-none focus:shadow-outline p-2 rounded-md"
-              >
-                <svg
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  viewBox="0 0 24 24"
-                  class="w-3 h-3"
+          <div v-if="prosList.length">
+            <ul class="-mt-2">
+              <li v-for="(prosItem, index) in prosList" :key="index" class="text-green-600 flex justify-between mt-2">
+                <span>{{ prosItem }}</span>
+                <button
+                  @click="removeProsItem(index)"
+                  class="ml-4 inline-flex justify-center items-center bg-gray-100 hover:bg-gray-200 text-gray-700 focus:outline-none focus:shadow-outline p-2 rounded-md"
                 >
-                  <path d="M6 18L18 6M6 6l12 12"></path>
-                </svg>
-              </button>
-            </li>
-          </ul>
+                  <svg
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    viewBox="0 0 24 24"
+                    class="w-3 h-3"
+                  >
+                    <path d="M6 18L18 6M6 6l12 12"></path>
+                  </svg>
+                </button>
+              </li>
+            </ul>
+          </div>
+          <div v-else>
+            <div class="text-gray-400">{{ emptyMessage.proMessage }}</div>
+          </div>
         </div>
       </div>
 
@@ -78,27 +82,32 @@
           </h2>
         </div>
         <div class="p-2 sm:px-4">
-          <ul class="-mt-2">
-            <li v-for="(consItem, index) in consList" :key="index" class="text-red-600 flex justify-between mt-2">
-              <span>{{ consItem }}</span>
-              <button
-                @click="removeConsItem(index)"
-                class="ml-4 inline-flex justify-center items-center bg-gray-100 hover:bg-gray-200 text-gray-700 focus:outline-none focus:shadow-outline p-2 rounded-md"
-              >
-                <svg
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  viewBox="0 0 24 24"
-                  class="w-3 h-3"
+          <div v-if="consList.length">
+            <ul class="-mt-2">
+              <li v-for="(consItem, index) in consList" :key="index" class="text-red-600 flex justify-between mt-2">
+                <span>{{ consItem }}</span>
+                <button
+                  @click="removeConsItem(index)"
+                  class="ml-4 inline-flex justify-center items-center bg-gray-100 hover:bg-gray-200 text-gray-700 focus:outline-none focus:shadow-outline p-2 rounded-md"
                 >
-                  <path d="M6 18L18 6M6 6l12 12"></path>
-                </svg>
-              </button>
-            </li>
-          </ul>
+                  <svg
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    viewBox="0 0 24 24"
+                    class="w-3 h-3"
+                  >
+                    <path d="M6 18L18 6M6 6l12 12"></path>
+                  </svg>
+                </button>
+              </li>
+            </ul>
+          </div>
+          <div v-else>
+            <div class="text-gray-400">{{ emptyMessage.conMessage }}</div>
+          </div>
         </div>
       </div>
     </div>
@@ -115,9 +124,23 @@ export default {
     return {
       prosItem: '',
       consItem: '',
-      prosList: ['Better'],
-      consList: ['Worse'],
-      submitStatus: ''
+      prosList: [],
+      consList: [],
+      submitStatus: '',
+      emptyMessages: [
+        {
+          proMessage: 'What makes this great?',
+          conMessage: 'What makes this bad?'
+        },
+        {
+          proMessage: 'Why is it a pro?',
+          conMessage: 'Why is it a con?'
+        },
+        {
+          proMessage: 'You love it',
+          conMessage: 'You hate it'
+        }
+      ]
     }
   },
   props: ['title', 'id'],
@@ -127,6 +150,9 @@ export default {
     },
     consInputID() {
       return `${this.stringToID(this.title)}_cons_item_${this.id}`
+    },
+    emptyMessage() {
+      return this.emptyMessages[this.getRandomNumber()]
     }
   },
   components: {
@@ -159,6 +185,9 @@ export default {
     },
     stringToID(value) {
       return value.replace(/ /g, '_').toLowerCase()
+    },
+    getRandomNumber() {
+      return Math.floor(Math.random() * this.emptyMessages.length)
     }
   },
   validations: {

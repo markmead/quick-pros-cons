@@ -62,7 +62,7 @@
           <div class="mt-2 text-sm text-red-500" v-if="submitStatus === 'ERROR'">Field is required</div>
         </form>
 
-        <div ref="allLists">
+        <div v-if="listTitles.length > 0" ref="allLists">
           <draggable
             v-model="listTitles"
             handle="#handleDrag"
@@ -105,6 +105,10 @@
             </ListWrapper>
           </draggable>
         </div>
+        <div v-else class="flex flex-col items-center justify-center pt-8">
+          <div class="text-2xl mb-8">Uh oh! Looks like there's nothing here...</div>
+          <img :src="undrawEmpty" class="w-64" />
+        </div>
       </div>
     </div>
   </Layout>
@@ -114,6 +118,8 @@
 import html2pdf from 'html2pdf.js'
 import draggable from 'vuedraggable'
 import { required } from 'vuelidate/lib/validators'
+
+import undrawEmpty from './assets/undrawEmpty.svg'
 
 import Layout from '@/components/Layout'
 import Config from '@/components/Config'
@@ -125,9 +131,10 @@ export default {
   data() {
     return {
       listTitle: '',
-      listTitles: ['Mark', 'Jordi'],
+      listTitles: [],
       showConfig: false,
       submitStatus: '',
+      undrawEmpty: undrawEmpty,
       listSettings: {
         listsPerRow: 2,
         nameOfPDF: 'pros-cons'
