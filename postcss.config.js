@@ -4,6 +4,7 @@ const postcssPurgecss = require('@fullhuman/postcss-purgecss')
 
 const purgecss = postcssPurgecss({
   content: ['./public/**/*.html', './src/**/*.vue'],
+  whitelistPatterns: [/^grid-cols/],
   defaultExtractor: content => content.match(/[\w-/.:]+(?<!:)/g) || []
 })
 
