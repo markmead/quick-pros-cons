@@ -1,9 +1,11 @@
 <template>
-  <div class="md:flex md:items-center md:justify-between">
-    <div class="flex-1 min-w-0">
-      <h2 class="text-2xl font-bold leading-7 text-gray-900 sm:text-3xl sm:leading-9">Quick Pros/Cons Lists</h2>
+  <div
+    class="flex flex-col p-8 bg-indigo-100 rounded-t-lg md:items-center md:justify-between md:flex-row"
+  >
+    <div class="flex-1">
+      <h1 class="text-2xl font-bold leading-none text-indigo-700 sm:text-3xl">Quick Pros/Cons Lists</h1>
     </div>
-    <div class="mt-4 flex items-center md:mt-0 md:ml-4">
+    <div class="flex items-center mt-4 md:mt-0 md:ml-4">
       <slot />
     </div>
   </div>

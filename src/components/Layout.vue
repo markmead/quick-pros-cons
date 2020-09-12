@@ -1,5 +1,5 @@
-<template lang="html">
-  <div class="mx-auto max-w-screen-xl py-4 md:py-8">
+<template>
+  <main role="main" class="min-h-screen">
     <slot />
-  </div>
+  </main>
 </template>
