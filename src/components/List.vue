@@ -1,4 +1,3 @@
-
 <template>
   <div>
     <div class="grid grid-cols-2 gap-4 mb-4" data-html2canvas-ignore="true">
@@ -8,15 +7,12 @@
           <input
             v-model.trim="$v.prosItem.$model"
             :id="prosInputID"
-            class="w-full p-4 text-sm leading-none text-indigo-600 placeholder-indigo-400 bg-indigo-200 bg-opacity-50 border-0 form-input"
+            class="w-full p-4 text-sm leading-none text-teal-600 placeholder-teal-400 bg-teal-200 bg-opacity-50 border-0 form-input"
             :class="{ 'border-red-500': submitStatus === 'ERROR_PROS' }"
             placeholder="Why is it a pro?"
           />
         </div>
-        <div
-          class="mt-2 text-sm text-red-500"
-          v-if="submitStatus === 'ERROR_PROS'"
-        >Field is required</div>
+        <div class="mt-2 text-sm text-red-500" v-if="submitStatus === 'ERROR_PROS'">Field is required</div>
       </form>
 
       <form @submit.prevent="addConsItem">
@@ -25,31 +21,24 @@
           <input
             v-model.trim="$v.consItem.$model"
             :id="consInputID"
-            class="w-full p-4 text-sm leading-none text-indigo-600 placeholder-indigo-400 bg-indigo-200 bg-opacity-50 border-0 form-input"
+            class="w-full p-4 text-sm leading-none text-teal-600 placeholder-teal-400 bg-teal-200 bg-opacity-50 border-0 form-input"
             :class="{ 'border-red-500': submitStatus === 'ERROR_CONS' }"
             placeholder="Why is it a con?"
           />
         </div>
-        <div
-          class="mt-2 text-sm text-red-500"
-          v-if="submitStatus === 'ERROR_CONS'"
-        >Field is required</div>
+        <div class="mt-2 text-sm text-red-500" v-if="submitStatus === 'ERROR_CONS'">Field is required</div>
       </form>
     </div>
 
     <div class="grid grid-cols-2 gap-4">
       <div class="overflow-hidden">
-        <h2 class="font-medium text-indigo-600">
+        <h2 class="font-medium text-teal-600">
           Pros
-          <sup class="text-indigo-500">({{ prosList.length }})</sup>
+          <sup class="text-teal-500">({{ prosList.length }})</sup>
         </h2>
         <div v-if="prosList.length">
           <ul class="mt-2 space-y-2">
-            <li
-              v-for="(prosItem, index) in prosList"
-              :key="index"
-              class="flex items-center justify-between"
-            >
+            <li v-for="(prosItem, index) in prosList" :key="index" class="flex items-center justify-between">
               <span class="font-medium text-green-500">{{ prosItem }}</span>
               <Button @action="removeProsItem(index)" variant="naked">
                 <CloseSVG />
@@ -60,17 +49,13 @@
       </div>
 
       <div class="overflow-hidden">
-        <h2 class="font-medium text-indigo-600">
+        <h2 class="font-medium text-teal-600">
           Cons
-          <sup class="text-indigo-500">({{ consList.length }})</sup>
+          <sup class="text-teal-500">({{ consList.length }})</sup>
         </h2>
         <div v-if="consList.length">
           <ul class="mt-2 space-y-2">
-            <li
-              v-for="(consItem, index) in consList"
-              :key="index"
-              class="flex items-center justify-between"
-            >
+            <li v-for="(consItem, index) in consList" :key="index" class="flex items-center justify-between">
               <span class="font-medium text-red-500">{{ consItem }}</span>
               <Button @action="removeConsItem(index)" variant="naked">
                 <CloseSVG />

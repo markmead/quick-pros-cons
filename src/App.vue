@@ -14,7 +14,7 @@
         <Config v-if="showConfig" v-model="listSettings" />
       </div>
 
-      <div class="h-full p-8 rounded-b-lg bg-indigo-50">
+      <div class="h-full p-8 rounded-b-lg bg-teal-50">
         <form @submit.prevent="addListTitle">
           <div>
             <label for="listTitle" class="sr-only">List Title</label>
@@ -22,7 +22,7 @@
               <input
                 v-model.trim="$v.listTitle.$model"
                 id="listTitle"
-                class="w-full py-4 pl-4 pr-20 text-lg leading-none text-indigo-600 placeholder-indigo-400 bg-indigo-100 border-0 form-input"
+                class="w-full py-4 pl-4 pr-20 text-lg leading-none text-teal-600 placeholder-teal-400 bg-teal-100 border-0 form-input"
                 placeholder="Should I use..."
                 :class="{ 'border-red-500': submitStatus === 'ERROR' }"
               />
@@ -43,12 +43,7 @@
             class="grid gap-8 mt-4 md:mt-8"
             :class="listsPerRowClass"
           >
-            <ListWrapper
-              v-for="(listTitle, index) in listTitles"
-              :key="index"
-              :title="listTitle"
-              :id="index"
-            >
+            <ListWrapper v-for="(listTitle, index) in listTitles" :key="index" :title="listTitle" :id="index">
               <Button variant="system" reference="handleDrag">
                 <DragSVG />
               </Button>

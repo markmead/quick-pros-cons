@@ -27,10 +27,10 @@ export default {
     let variantStyle = ''
     let defaultStyle =
       'inline-flex items-center text-sm font-medium leading-none rounded focus:outline-none focus:shadow-outline'
-    let primaryStyle = 'bg-indigo-600 text-white hover:bg-indigo-500 px-6 py-4'
-    let systemStyle = 'bg-gray-100 text-gray-700 hover:bg-gray-50 p-3'
-    let inputStyle = 'bg-indigo-200 text-indigo-500 hover:bg-indigo-300 p-1.5'
-    let nakedStyle = 'text-indigo-500 w-6 h-6 bg-indigo-100 p-1.5'
+    let primaryStyle = 'bg-teal-600 text-white hover:bg-teal-500 px-6 py-4'
+    let systemStyle = 'bg-teal-200 text-teal-500 hover:bg-teal-300 p-3'
+    let inputStyle = 'bg-teal-200 text-teal-500 hover:bg-teal-300 p-1.5'
+    let nakedStyle = 'text-teal-500 w-6 h-6 bg-teal-100 p-1.5'
 
     switch (this.variant) {
       case 'system':
